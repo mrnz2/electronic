@@ -1,0 +1,14 @@
+---
+description: Always read the project parts list before answering about components or suggestions
+alwaysApply: true
+---
+
+# Electronic Parts List Context
+
+Before answering questions about electronic components, part selection, circuit design, or project suggestions:
+
+1. **Read the parts list**: Open and read `ElectronicParts.csv` to see which parts are in stock (Name, Quantity, Description).
+2. **Use it in answers**: When suggesting components, circuits, or modules, prefer or explicitly reference parts from this list when they fit. If the user doesn't have a part, say so and suggest the closest alternative from the list or note what they’d need to buy.
+3. **Keep suggestions practical**: Base recommendations on actual stock (quantities and specs in the list) so answers are immediately actionable.
+
+The list path: `ElectronicParts.csv` in the project root.

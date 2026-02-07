@@ -318,7 +318,7 @@
         "quantity": "1",
         "rodzaj": "Moduł wejścia",
         "description": "2-axis analog joystick + push button; 5V; two 10k pots; VRx VRy SW; game/control",
-        "image": "KY-023_Joystick.png"
+        "image": "KY-023_Joystick.jpeg"
       },
       {
         "xx": "68",
@@ -326,7 +326,7 @@
         "quantity": "1",
         "rodzaj": "Moduł wejścia",
         "description": "Rotary encoder with push; 5V; 20 pulses/rev; CLK DT SW; no detent or with",
-        "image": "KY-040_Rotary_Encoder.png"
+        "image": "KY-040_Rotary_Encoder.jpg"
       }
     ]
   },
