@@ -1,0 +1,643 @@
+[
+  {
+    "rodzaj": "Czujnik",
+    "items": [
+      {
+        "xx": "1",
+        "name": "3144E",
+        "quantity": "5",
+        "rodzaj": "Czujnik",
+        "description": "Hall effect sensor; 4.5-24V; digital output; bipolar; detects magnetic field polarity"
+      },
+      {
+        "xx": "2",
+        "name": "MPU-6500 / GY-6500",
+        "quantity": "2",
+        "rodzaj": "Czujnik",
+        "description": "6-axis IMU (3-axis gyro + 3-axis accelerometer); I2C/SPI; 2.4-3.6V; 16-bit; motion tracking",
+        "image": "MPU-6500_GY-6500.jpg"
+      },
+      {
+        "xx": "3",
+        "name": "INMP441",
+        "quantity": "3",
+        "rodzaj": "Czujnik",
+        "description": "Omnidirectional MEMS I2S digital microphone; 1.8-3.3V; 64 dB SNR; PDM output; bottom port"
+      },
+      {
+        "xx": "13",
+        "name": "INA219",
+        "quantity": "4",
+        "rodzaj": "Czujnik",
+        "description": "I2C current/voltage/power sensor; 3-5V logic; 0-26V bus; 3.2A max (with shunt); 12-bit"
+      },
+      {
+        "xx": "14",
+        "name": "AHT20 + BMP280",
+        "quantity": "3",
+        "rodzaj": "Czujnik",
+        "description": "Combo: AHT20 temp+humidity (I2C; 2-5.5V) + BMP280 pressure (1.7-3.6V); I2C"
+      },
+      {
+        "xx": "15",
+        "name": "GY SPG",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "Pressure/altitude sensor module (e.g. BMP280 variant); I2C; 3.3V; barometer",
+        "image": "GY_SPG.jpg"
+      },
+      {
+        "xx": "16",
+        "name": "GY-BME280",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "Temp + humidity + pressure; I2C/SPI; 1.7-3.6V; high accuracy; indoor/outdoor",
+        "image": "GY-BME280.jpg"
+      },
+      {
+        "xx": "18",
+        "name": "MQ-135",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "Air quality / gas sensor (NH3 NOx alcohol benzene CO2); 5V; analog output; heating element",
+        "image": "MQ-135.jpg"
+      },
+      {
+        "xx": "22",
+        "name": "Photoresistors - 5528 5506 5516 5537 5539 GL5528",
+        "quantity": "50",
+        "rodzaj": "Czujnik",
+        "description": "CdS LDRs; various dark R (e.g. 0.2-2M); 5mm; max 150V; use with series R for divider",
+        "image": "Photoresistors_-_5528_5506_5516_5537_5539_GL5528.jpg"
+      },
+      {
+        "xx": "23",
+        "name": "TTP223",
+        "quantity": "20",
+        "rodzaj": "Czujnik",
+        "description": "Capacitive touch sensor IC/module; 2-5.5V; one channel; low power; replace button"
+      },
+      {
+        "xx": "69",
+        "name": "Water Level Sensor",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "Analog water level; 3-5V; exposed traces; output 0-Vcc by immersion; corrosion risk",
+        "image": "Water_Level_Sensor.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Dioda",
+    "items": [
+      {
+        "xx": "52",
+        "name": "1N4007 diode",
+        "quantity": "25",
+        "rodzaj": "Dioda",
+        "description": "Rectifier diode 1N4007; 1000V 1A; general purpose; slow recovery",
+        "image": "IN4007_diode.jpg"
+      },
+      {
+        "xx": "53",
+        "name": "1N5408 diode",
+        "quantity": "5",
+        "rodzaj": "Dioda",
+        "description": "Rectifier 1N5408; 1000V 3A; DO-201AD; general purpose",
+        "image": "IN5408_diode.jpg"
+      },
+      {
+        "xx": "54",
+        "name": "FR107 diode",
+        "quantity": "10",
+        "rodzaj": "Dioda",
+        "description": "Fast recovery; 1000V 1A; 500 ns trr; for switching supplies",
+        "image": "FR107_diode.jpg"
+      },
+      {
+        "xx": "55",
+        "name": "1N5819 diode",
+        "quantity": "10",
+        "rodzaj": "Dioda",
+        "description": "Schottky 1N5819; 40V 1A; 0.6V Vf; DO-41; low loss",
+        "image": "IN5819_diode.jpg"
+      },
+      {
+        "xx": "56",
+        "name": "1N4148 diode",
+        "quantity": "25",
+        "rodzaj": "Dioda",
+        "description": "Signal diode 1N4148; 100V 200 mA; 4 ns switch; glass; logic/clamp",
+        "image": "IN4148_diode.jpg"
+      },
+      {
+        "xx": "57",
+        "name": "FR207 diode",
+        "quantity": "10",
+        "rodzaj": "Dioda",
+        "description": "Fast recovery; 1000V 2A; 500 ns trr; DO-15",
+        "image": "FR207_diode.jpg"
+      },
+      {
+        "xx": "58",
+        "name": "1N5399 diode",
+        "quantity": "10",
+        "rodzaj": "Dioda",
+        "description": "Rectifier 1N5399; 1000V 1.5A; DO-15; general purpose",
+        "image": "IN5399_diode.jpg"
+      },
+      {
+        "xx": "59",
+        "name": "1N5822 diode",
+        "quantity": "5",
+        "rodzaj": "Dioda",
+        "description": "Schottky 1N5822; 40V 3A; DO-201AD; low Vf; DC-DC",
+        "image": "IN5822_diode.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Dioda LED",
+    "items": [
+      {
+        "xx": "26",
+        "name": "RGB Diode",
+        "quantity": "50",
+        "rodzaj": "Dioda LED",
+        "description": "5mm common-cathode or common-anode RGB LED; ~2V per color; 20 mA per channel; 4 pins"
+      },
+      {
+        "xx": "28",
+        "name": "Color Diodes",
+        "quantity": "20",
+        "rodzaj": "Dioda LED",
+        "description": "5mm single-color LEDs (red/green/yellow/blue/white); ~2-3.2V Vf; 20 mA If; through-hole"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Kondensator",
+    "items": [
+      {
+        "xx": "71",
+        "name": "Capacitors various",
+        "quantity": "100",
+        "rodzaj": "Kondensator",
+        "description": "Mixed ceramic/electrolytic; typ. 10V-50V; pF to uF range; decoupling / filter / timing",
+        "image": "Capacitors_various.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Laser",
+    "items": [
+      {
+        "xx": "24",
+        "name": "Laser Diode Circuit 3V/5V 5mW 650nm",
+        "quantity": "10",
+        "rodzaj": "Laser",
+        "description": "Red laser module 650 nm; 5 mW; 3V or 5V supply; built-in driver; pointer/alignment"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Ładowarka",
+    "items": [
+      {
+        "xx": "8",
+        "name": "MH-CD42",
+        "quantity": "4",
+        "rodzaj": "Ładowarka",
+        "description": "Li-ion 1S charging module; 4.2V cutoff; 5V USB in; ~1A charge; LED status",
+        "image": "MH-CD42.png"
+      },
+      {
+        "xx": "9",
+        "name": "TP4056",
+        "quantity": "9",
+        "rodzaj": "Ładowarka",
+        "description": "Li-ion 1S linear charger; 4.2V; 1A max; 4.5-6.5V in; with protection option"
+      },
+      {
+        "xx": "11",
+        "name": "TP4056 1.2A mini 2R2",
+        "quantity": "6",
+        "rodzaj": "Ładowarka",
+        "description": "Mini Li-ion charger; 1.2A; 2.2V option (LiFePO4) or 4.2V; 5V USB in"
+      }
+    ]
+  },
+  {
+    "rodzaj": "MCU",
+    "items": [
+      {
+        "xx": "29",
+        "name": "ESP32-C3 SuperMini",
+        "quantity": "3",
+        "rodzaj": "MCU",
+        "description": "MCU WiFi+BLE 5.0; RISC-V single-core; 3.3V; 4MB flash; small form factor",
+        "image": "ESP32-C3_SuperMini.jpg"
+      },
+      {
+        "xx": "30",
+        "name": "ESP32-C6 SuperMini",
+        "quantity": "2",
+        "rodzaj": "MCU",
+        "description": "MCU WiFi 6 + BLE 5 + 802.15.4 (Thread/Zigbee); 3.3V; RISC-V; 4MB flash",
+        "image": "ESP32-C6_SuperMini.jpg"
+      },
+      {
+        "xx": "31",
+        "name": "ESP32-S3 SuperMini",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "MCU dual-core Xtensa LX7; WiFi+BLE; 3.3V; 4MB flash; vector instructions",
+        "image": "ESP32-S3_SuperMini.jpg"
+      },
+      {
+        "xx": "61",
+        "name": "ESP32 WROOM E32",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "ESP32 module; dual-core 240 MHz; WiFi+BLE; 3.3V; 4MB flash; 38 pins",
+        "image": "ESP32_WROOM_E32.jpg"
+      },
+      {
+        "xx": "62",
+        "name": "ESP32 32D N4",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "ESP32-D0WD; dual-core; 4MB flash; WiFi+BLE; 3.3V; 30 pins",
+        "image": "ESP32_32D_N4.jpg"
+      },
+      {
+        "xx": "63",
+        "name": "ESP32 C6",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "ESP32-C6; WiFi 6 + BLE 5 + 802.15.4; 3.3V; RISC-V; 4MB flash",
+        "image": "ESP32_C6.jpg"
+      },
+      {
+        "xx": "64",
+        "name": "ESP32 32D",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "ESP32-D0WD module; dual-core; WiFi+BLE; 3.3V; 4MB flash",
+        "image": "ESP32_32D.jpg"
+      },
+      {
+        "xx": "65",
+        "name": "ESP32 WROOM 32",
+        "quantity": "1",
+        "rodzaj": "MCU",
+        "description": "ESP32-WROOM-32; dual-core; WiFi+BLE; 3.3V; 4MB flash; 38 pins",
+        "image": "ESP32_WROOM_32.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Miernik",
+    "items": [
+      {
+        "xx": "17",
+        "name": "3.7V-4.2V 4-Channel Battery Metering 1S",
+        "quantity": "5",
+        "rodzaj": "Miernik",
+        "description": "4x 1S Li-ion voltage display; 3.0-4.2V range; LED bars per cell",
+        "image": "37V-42V_4-Channel_Battery_Metering_1S.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Moduł wejścia",
+    "items": [
+      {
+        "xx": "67",
+        "name": "KY-023 Joystick",
+        "quantity": "1",
+        "rodzaj": "Moduł wejścia",
+        "description": "2-axis analog joystick + push button; 5V; two 10k pots; VRx VRy SW; game/control",
+        "image": "KY-023_Joystick.png"
+      },
+      {
+        "xx": "68",
+        "name": "KY-040 Rotary Encoder",
+        "quantity": "1",
+        "rodzaj": "Moduł wejścia",
+        "description": "Rotary encoder with push; 5V; 20 pulses/rev; CLK DT SW; no detent or with",
+        "image": "KY-040_Rotary_Encoder.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "MOSFET",
+    "items": [
+      {
+        "xx": "20",
+        "name": "HW517 MOSFET",
+        "quantity": "4",
+        "rodzaj": "MOSFET",
+        "description": "N-channel logic-level MOSFET; 30V 2A; Vgs(th) ~1.5V; SOT-23; for 3.3V/5V drive"
+      }
+    ]
+  },
+  {
+    "rodzaj": "NFC",
+    "items": [
+      {
+        "xx": "21",
+        "name": "NFC TAG",
+        "quantity": "20",
+        "rodzaj": "NFC",
+        "description": "NFC passive tag; 13.56 MHz; NTAG213/215/216 or similar; 144-888 bytes; rewritable",
+        "image": "NFC_TAG.jpeg"
+      },
+      {
+        "xx": "60",
+        "name": "PN532 elechouse",
+        "quantity": "1",
+        "rodzaj": "NFC",
+        "description": "NFC reader/writer; 13.56 MHz; I2C/SPI/UART; 3.3V; ISO14443A/MIFARE",
+        "image": "PN532.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Ochrona BMS",
+    "items": [
+      {
+        "xx": "12",
+        "name": "BMS PCM S1",
+        "quantity": "12",
+        "rodzaj": "Ochrona BMS",
+        "description": "1S Li-ion protection (PCM); overcharge/overdischarge/overcurrent; 2.5-4.35V cell; low Rds"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Potencjometr",
+    "items": [
+      {
+        "xx": "27",
+        "name": "3296W",
+        "quantity": "10",
+        "rodzaj": "Potencjometr",
+        "description": "Trimmer potentiometer; 100R to 1M values; 0.5W; 25-turn; through-hole; adjustable voltage/current",
+        "image": "3296W.png"
+      },
+      {
+        "xx": "72",
+        "name": "Potentiometers various",
+        "quantity": "100",
+        "rodzaj": "Potencjometr",
+        "description": "Mixed values and sizes; 10k common; linear/log; 0.5W; knobs for voltage/volume",
+        "image": "Potentiometers_various.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Przekaźnik",
+    "items": [
+      {
+        "xx": "66",
+        "name": "Relay Module 1 Channel 5V max out DC 30V/10A, AC 250V/10A",
+        "quantity": "1",
+        "rodzaj": "Przekaźnik",
+        "description": "1-channel relay board; 5V coil; contacts 10A 30V DC / 10A 250V AC; opto or transistor drive",
+        "image": "Relay_Module_1_Channel_5V_max_out_DC_30V10A_AC_250V10A.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Przełącznik",
+    "items": [
+      {
+        "xx": "25",
+        "name": "Switch OFF-ON",
+        "quantity": "20",
+        "rodzaj": "Przełącznik",
+        "description": "SPST toggle switch; 1 pole; typically 6A 125V AC / 3A 250V AC; through-hole",
+        "image": "Switch_OFF-ON.jpg"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Rezystor",
+    "items": [
+      {
+        "xx": "70",
+        "name": "Resistors various",
+        "quantity": "1000",
+        "rodzaj": "Rezystor",
+        "description": "Mixed through-hole resistors; typical 1/4W; 10R-1M+; E24 values; limit current / dividers",
+        "image": "Resistors_various.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Silnik",
+    "items": [
+      {
+        "xx": "19",
+        "name": "Vibration Motor",
+        "quantity": "10",
+        "rodzaj": "Silnik",
+        "description": "DC coin vibration motor; typically 3V; ~70 mA; small diameter; haptic feedback",
+        "image": "Vibration_Motor.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Tranzystor",
+    "items": [
+      {
+        "xx": "42",
+        "name": "BC337",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "NPN transistor; 45V 800 mA; hfe 100-630; 625 mW; general purpose / switching"
+      },
+      {
+        "xx": "43",
+        "name": "BC327",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "PNP transistor; 45V 800 mA; complement to BC337; 625 mW",
+        "image": "BC327.jpg"
+      },
+      {
+        "xx": "44",
+        "name": "2N2222",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "NPN; 40V 800 mA; hfe 100-300; 500 mW; TO-18 metal can or TO-92"
+      },
+      {
+        "xx": "45",
+        "name": "2N2907",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "PNP; 60V 800 mA; complement to 2N2222; TO-18/TO-92"
+      },
+      {
+        "xx": "46",
+        "name": "2N3904",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "NPN; 40V 200 mA; 300 mW; fast switching; TO-92"
+      },
+      {
+        "xx": "47",
+        "name": "2N3906",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "PNP; 40V 200 mA; complement to 2N3904; TO-92"
+      },
+      {
+        "xx": "48",
+        "name": "S8050",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "NPN; 25V 1.5A; hfe 85-300; 1W; SOT-23 or TO-92"
+      },
+      {
+        "xx": "49",
+        "name": "S8550",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "PNP; 25V 1.5A; complement to S8050; 1W"
+      },
+      {
+        "xx": "50",
+        "name": "A1015",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "PNP; 50V 150 mA; low noise audio; TO-92"
+      },
+      {
+        "xx": "51",
+        "name": "C1815",
+        "quantity": "20",
+        "rodzaj": "Tranzystor",
+        "description": "NPN; 50V 150 mA; complement to A1015; TO-92"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Układ scalony",
+    "items": [
+      {
+        "xx": "32",
+        "name": "NE555",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Timer IC; 4.5-16V; astable/mono; 200 mA output; 8-pin DIP ",
+        "image": "NE555.jpg"
+      },
+      {
+        "xx": "33",
+        "name": "LM324",
+        "quantity": "5",
+        "rodzaj": "Układ scalony",
+        "description": "Quad low-power op-amp; single supply 3-32V (or ±1.5-16V); 1.2 MHz GBP; 4 channels"
+      },
+      {
+        "xx": "34",
+        "name": "LM393",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Dual comparator; 2-36V single supply; open-collector output; 4-pin per comparator"
+      },
+      {
+        "xx": "35",
+        "name": "UA741",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Single op-amp; ±22V or 3-32V single supply; 1.5 MHz; 8-pin DIP"
+      },
+      {
+        "xx": "36",
+        "name": "ULN2803",
+        "quantity": "5",
+        "rodzaj": "Układ scalony",
+        "description": "8-channel Darlington array; 50V 500 mA per channel; 5V TTL/CMOS in; freewheel diodes"
+      },
+      {
+        "xx": "37",
+        "name": "LM358",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Dual op-amp; 3-32V single supply; 700 kHz GBP; low offset; 8-pin"
+      },
+      {
+        "xx": "38",
+        "name": "NE5532",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Dual low-noise op-amp; ±3 to ±20V; 10 MHz; audio-grade; 8-pin"
+      },
+      {
+        "xx": "39",
+        "name": "LM386",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Low-voltage audio power amp; 4-12V; 0.5W into 8 ohm; gain 20-200; 8-pin"
+      },
+      {
+        "xx": "40",
+        "name": "PC817",
+        "quantity": "10",
+        "rodzaj": "Układ scalony",
+        "description": "Optocoupler; 80 mA LED; 35V collector; CTR 80-160%; 5 kV isolation; 4-pin DIP"
+      },
+      {
+        "xx": "41",
+        "name": "ULN2003",
+        "quantity": "5",
+        "rodzaj": "Układ scalony",
+        "description": "7-channel Darlington array; 50V 500 mA per channel; 5V TTL in; freewheel diodes"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Zasilanie",
+    "items": [
+      {
+        "xx": "4",
+        "name": "MT3608",
+        "quantity": "5",
+        "rodzaj": "Zasilanie",
+        "description": "Step-up DC-DC booster module; 2-24V in to 5-28V out; max ~2A in / 1.2A out; adjustable"
+      },
+      {
+        "xx": "5",
+        "name": "TPS63020 2R2",
+        "quantity": "2",
+        "rodzaj": "Zasilanie",
+        "description": "Buck-boost converter IC/module; 2.2V fixed output; 2.5-5.5V in; up to 2A; high efficiency"
+      },
+      {
+        "xx": "6",
+        "name": "TPS63020 1R5",
+        "quantity": "6",
+        "rodzaj": "Zasilanie",
+        "description": "Buck-boost converter IC/module; 1.5V fixed output; 2.5-5.5V in; up to 2A; high efficiency"
+      },
+      {
+        "xx": "7",
+        "name": "XL63070",
+        "quantity": "10",
+        "rodzaj": "Zasilanie",
+        "description": "Step-down DC-DC module; 4-38V in to 1.25-36V out (adj); 7A max; synchronous"
+      },
+      {
+        "xx": "10",
+        "name": "J5019",
+        "quantity": "2",
+        "rodzaj": "Zasilanie",
+        "description": "USB step-down power module; 5V out; 1A typical; 6-24V DC in; compact"
+      }
+    ]
+  }
+]
