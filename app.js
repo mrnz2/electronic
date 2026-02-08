@@ -28,6 +28,15 @@ function savePartsJson(data) {
   fs.writeFileSync(PARTS_JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
 }
 
+/** Usuwa z tablicy kategorie, które nie mają żadnych elementów. */
+function removeEmptyCategories(data) {
+  for (let i = data.length - 1; i >= 0; i--) {
+    if (!data[i].items || data[i].items.length === 0) {
+      data.splice(i, 1);
+    }
+  }
+}
+
 app.get('/', (req, res) => {
   const data = loadPartsData();
   const categories = data.map((c) => c.rodzaj);
@@ -44,7 +53,8 @@ app.get('/category/:name', (req, res) => {
   if (!category || !category.items.length) {
     return res.status(404).send(renderNotFound(categoryName));
   }
-  const html = renderCategory(categoryName, category.items);
+  const categories = data.map((c) => c.rodzaj);
+  const html = renderCategory(categoryName, category.items, categories);
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.send(html);
 });
@@ -92,15 +102,22 @@ app.post('/api/part/quantity', (req, res) => {
 });
 
 app.patch('/api/part', (req, res) => {
-  const { xx, description, image } = req.body || {};
+  const { xx, description, image, rodzaj } = req.body || {};
   if (xx == null || String(xx).trim() === '') {
     return res.status(400).json({ ok: false, error: 'Brak identyfikatora xx' });
   }
   const data = loadPartsData();
+  let sourceCatIndex = -1;
+  let itemIndex = -1;
   let item = null;
-  for (const cat of data) {
-    item = cat.items.find((p) => String(p.xx).trim() === String(xx).trim());
-    if (item) break;
+  for (let i = 0; i < data.length; i++) {
+    const idx = data[i].items.findIndex((p) => String(p.xx).trim() === String(xx).trim());
+    if (idx !== -1) {
+      sourceCatIndex = i;
+      itemIndex = idx;
+      item = data[i].items[idx];
+      break;
+    }
   }
   if (!item) {
     return res.status(404).json({ ok: false, error: 'Nie znaleziono elementu' });
@@ -111,6 +128,19 @@ app.patch('/api/part', (req, res) => {
     item.image = path || undefined;
     if (!path) delete item.image;
   }
+  const newRodzaj = rodzaj != null ? String(rodzaj).trim() : '';
+  if (newRodzaj !== '' && newRodzaj !== data[sourceCatIndex].rodzaj) {
+    item.rodzaj = newRodzaj;
+    const moved = data[sourceCatIndex].items.splice(itemIndex, 1)[0];
+    let targetCat = data.find((c) => c.rodzaj === newRodzaj);
+    if (!targetCat) {
+      targetCat = { rodzaj: newRodzaj, items: [] };
+      data.push(targetCat);
+      data.sort((a, b) => a.rodzaj.localeCompare(b.rodzaj));
+    }
+    targetCat.items.push(moved);
+  }
+  removeEmptyCategories(data);
   savePartsJson(data);
   res.json({ ok: true });
 });
@@ -136,11 +166,9 @@ app.delete('/api/part', (req, res) => {
   }
   const cat = data[categoryIndex];
   cat.items.splice(itemIndex, 1);
-  if (cat.items.length === 0) {
-    data.splice(categoryIndex, 1);
-  }
+  removeEmptyCategories(data);
   savePartsJson(data);
-  res.json({ ok: true, categoryEmpty: cat.items.length === 0 });
+  res.json({ ok: true });
 });
 
 app.post('/api/part', (req, res) => {
@@ -371,7 +399,7 @@ function renderCategoryRows(items) {
   return items
     .map(
       (p) => `
-    <tr data-xx="${escapeHtml(p.xx)}" data-description="${escapeHtmlAttr(p.description || '')}" data-image="${escapeHtmlAttr(p.image || '')}">
+    <tr data-xx="${escapeHtml(p.xx)}" data-rodzaj="${escapeHtmlAttr(p.rodzaj || '')}" data-description="${escapeHtmlAttr(p.description || '')}" data-image="${escapeHtmlAttr(p.image || '')}">
       <td class="thumb">
         <img src="${p.image ? '/img/' + escapeHtml(p.image) : '/img/placeholder.png'}" alt="" width="80" height="80" loading="lazy">
       </td>
@@ -394,8 +422,9 @@ function renderCategoryRows(items) {
     .join('');
 }
 
-function renderCategory(categoryName, items) {
+function renderCategory(categoryName, items, categories) {
   const rows = renderCategoryRows(items);
+  const categoryOptions = (categories || []).map((c) => `<option value="${escapeHtmlAttr(c)}">`).join('');
   return `<!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -462,6 +491,11 @@ function renderCategory(categoryName, items) {
           <textarea id="edit-description" name="description" rows="4"></textarea>
         </div>
         <div class="form-group">
+          <label for="edit-rodzaj">Kategoria</label>
+          <input type="text" id="edit-rodzaj" name="rodzaj" list="edit-category-list" placeholder="wybierz z listy lub wpisz nową">
+          <datalist id="edit-category-list">${categoryOptions}</datalist>
+        </div>
+        <div class="form-group">
           <label for="edit-image">Ścieżka do obrazka</label>
           <input type="text" id="edit-image" name="image" placeholder="np. NE555.jpg lub img/rezystor_10k.jpg">
         </div>
@@ -480,6 +514,7 @@ function renderCategory(categoryName, items) {
       var form = document.getElementById('edit-form');
       var editXx = document.getElementById('edit-xx');
       var editDesc = document.getElementById('edit-description');
+      var editRodzaj = document.getElementById('edit-rodzaj');
       var editImage = document.getElementById('edit-image');
       var backdrop = modal && modal.querySelector('.modal-backdrop');
       var btnClose = modal && modal.querySelector('.modal-close');
@@ -489,6 +524,7 @@ function renderCategory(categoryName, items) {
         if (!modal) return;
         editXx.value = row.getAttribute('data-xx') || '';
         editDesc.value = row.getAttribute('data-description') || '';
+        if (editRodzaj) editRodzaj.value = row.getAttribute('data-rodzaj') || '';
         editImage.value = row.getAttribute('data-image') || '';
         modal.classList.add('modal-open');
         modal.setAttribute('aria-hidden', 'false');
@@ -615,11 +651,12 @@ function renderCategory(categoryName, items) {
           e.preventDefault();
           var xx = editXx.value;
           var description = editDesc.value;
+          var rodzajVal = editRodzaj ? editRodzaj.value.trim() : '';
           var image = editImage.value.trim();
           fetch('/api/part', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ xx: xx, description: description, image: image || undefined })
+            body: JSON.stringify({ xx: xx, description: description, rodzaj: rodzajVal || undefined, image: image || undefined })
           })
           .then(function(r) { return r.json(); })
           .then(function(data) {

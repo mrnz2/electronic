@@ -196,19 +196,6 @@
     ]
   },
   {
-    "rodzaj": "Laser",
-    "items": [
-      {
-        "xx": "24",
-        "name": "Laser Diode Circuit 3V/5V 5mW 650nm",
-        "quantity": "10",
-        "rodzaj": "Laser",
-        "description": "Red laser module 650 nm; 5 mW; 3V or 5V supply; built-in driver; pointer/alignment",
-        "image": "Laser Diode.png"
-      }
-    ]
-  },
-  {
     "rodzaj": "Ładowarka",
     "items": [
       {
@@ -234,6 +221,19 @@
         "rodzaj": "Ładowarka",
         "description": "Mini Li-ion charger; 1.2A; 2.2V option (LiFePO4) or 4.2V; 5V USB in",
         "image": "TP4056 1.2A mini 2R2.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Laser",
+    "items": [
+      {
+        "xx": "24",
+        "name": "Laser Diode Circuit 3V/5V 5mW 650nm",
+        "quantity": "10",
+        "rodzaj": "Laser",
+        "description": "Red laser module 650 nm; 5 mW; 3V or 5V supply; built-in driver; pointer/alignment",
+        "image": "Laser Diode.png"
       }
     ]
   },
