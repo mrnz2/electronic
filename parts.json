@@ -89,6 +89,22 @@
         "rodzaj": "Czujnik",
         "description": "Analog water level; 3-5V; exposed traces; output 0-Vcc by immersion; corrosion risk",
         "image": "Water_Level_Sensor.png"
+      },
+      {
+        "xx": "74",
+        "name": "VEML7700",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "SAMIROB VEML7700 Ambient Light Sensor 120k Lux Light measuring Sensor Board 3.3V 5V I2C IIC",
+        "image": "VEML7700.jpeg"
+      },
+      {
+        "xx": "75",
+        "name": "DS18B20",
+        "quantity": "1",
+        "rodzaj": "Czujnik",
+        "description": "DS18B20 Temperature Sensor Module Kit Waterproof 100CM Digital Sensor Cable Stainless Steel Probe Terminal Adapter. waterproof DS18B20 temperature sensor must also be connected to a pull-up resistor can be used, for which we designed the converter to send use.",
+        "image": "DS18B20.jpeg"
       }
     ]
   },
@@ -333,7 +349,7 @@
       {
         "xx": "68",
         "name": "KY-040 Rotary Encoder",
-        "quantity": "1",
+        "quantity": "4",
         "rodzaj": "Moduł wejścia",
         "description": "Rotary encoder with push; 5V; 20 pulses/rev; CLK DT SW; no detent or with",
         "image": "KY-040_Rotary_Encoder.jpg"
@@ -367,7 +383,7 @@
       {
         "xx": "60",
         "name": "PN532 elechouse",
-        "quantity": "1",
+        "quantity": "3",
         "rodzaj": "NFC",
         "description": "NFC reader/writer; 13.56 MHz; I2C/SPI/UART; 3.3V; ISO14443A/MIFARE",
         "image": "PN532.jpg"
@@ -627,6 +643,19 @@
         "rodzaj": "Układ scalony",
         "description": "7-channel Darlington array; 50V 500 mA per channel; 5V TTL in; freewheel diodes",
         "image": "ULN2003.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Wyswietlacz",
+    "items": [
+      {
+        "xx": "73",
+        "name": "OLED Display Module SSD1306",
+        "quantity": "1",
+        "rodzaj": "Wyswietlacz",
+        "description": "SSD1306 to jednoukładowy sterownik CMOS zaprojektowany do sterowania matrycami OLED o rozdzielczości do $128 \\times 64$ pikseli, komunikujący się poprzez interfejsy I2C lub SPI. Moduł integruje w sobie kontroler kontrastu, generator napięcia wyświetlania oraz 1 KB pamięci GDDRAM, co pozwala na precyzyjne sterowanie każdym pikselem przy zachowaniu niskiego poboru energii.",
+        "image": "OLED-SSD1306.jpg"
       }
     ]
   },
