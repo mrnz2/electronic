@@ -3,7 +3,7 @@ const path = require('path');
 const { stringify } = require('csv-stringify/sync');
 const express = require('express');
 
-const PORT = 5000;
+const PORT = 5001;
 const PARTS_JSON_PATH = path.join(__dirname, 'parts.json');
 const CSV_PATH = path.join(__dirname, 'ElectronicParts.csv');
 /** Kolumny eksportu CSV – bez pola image (link do zdjęcia nie jest eksportowany). */
@@ -214,6 +214,16 @@ app.post('/api/part', (req, res) => {
   res.json({ ok: true, xx: newXx, rodzaj: rodzajTrim });
 });
 
+app.get('/api/search', (req, res) => {
+  const q = (req.query.q || '').trim().toLowerCase();
+  if (!q) return res.json([]);
+  const data = loadPartsData();
+  const results = data.flatMap((cat) =>
+    cat.items.filter((p) => String(p.name).toLowerCase().includes(q))
+  );
+  res.json(results);
+});
+
 app.post('/api/generate-csv', (req, res) => {
   try {
     if (fs.existsSync(CSV_PATH)) {
@@ -260,6 +270,18 @@ function renderIndex(categories, parts) {
       <h1>Kategorie części elektronicznych</h1>
       <p>Wybierz kategorię, aby zobaczyć listę elementów.</p>
     </header>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Szukaj elementu po nazwie…" autocomplete="off">
+      <span id="search-info" class="search-info"></span>
+    </div>
+    <div id="search-results" class="search-results" style="display:none">
+      <table class="parts-table">
+        <thead>
+          <tr><th>Obraz</th><th>Nazwa</th><th>Kategoria</th><th>Ilość</th><th>Opis</th></tr>
+        </thead>
+        <tbody id="search-tbody"></tbody>
+      </table>
+    </div>
     <nav class="categories">
       ${links}
     </nav>
@@ -331,6 +353,56 @@ function renderIndex(categories, parts) {
             .finally(function(){ btn.disabled = false; });
         });
       }
+      var searchInput = document.getElementById('search-input');
+      var searchResults = document.getElementById('search-results');
+      var searchTbody = document.getElementById('search-tbody');
+      var searchInfo = document.getElementById('search-info');
+      var categoriesNav = document.querySelector('.categories');
+      var searchTimer = null;
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          clearTimeout(searchTimer);
+          var q = searchInput.value.trim();
+          if (!q) {
+            searchResults.style.display = 'none';
+            searchInfo.textContent = '';
+            if (categoriesNav) categoriesNav.style.display = '';
+            return;
+          }
+          searchTimer = setTimeout(function() {
+            fetch('/api/search?q=' + encodeURIComponent(q))
+              .then(function(r){ return r.json(); })
+              .then(function(items){
+                if (!items.length) {
+                  searchTbody.innerHTML = '';
+                  searchResults.style.display = 'none';
+                  searchInfo.textContent = 'Brak wyników dla „' + q + '"';
+                  if (categoriesNav) categoriesNav.style.display = '';
+                  return;
+                }
+                searchInfo.textContent = 'Znaleziono: ' + items.length;
+                if (categoriesNav) categoriesNav.style.display = 'none';
+                searchTbody.innerHTML = items.map(function(p){
+                  var imgSrc = p.image ? '/img/' + p.image : '/img/placeholder.png';
+                  return '<tr>'
+                    + '<td class="thumb"><img src="' + imgSrc + '" alt="" width="80" height="80" loading="lazy"></td>'
+                    + '<td class="name"><a href="/category/' + encodeURIComponent(p.rodzaj) + '" style="color:#63b3ed;text-decoration:none">' + escapeH(p.name) + '</a></td>'
+                    + '<td class="rodzaj">' + escapeH(p.rodzaj) + '</td>'
+                    + '<td class="qty">' + escapeH(p.quantity) + '</td>'
+                    + '<td class="desc">' + escapeH(p.description) + '</td>'
+                    + '</tr>';
+                }).join('');
+                searchResults.style.display = '';
+              })
+              .catch(function(){ searchInfo.textContent = 'Błąd wyszukiwania'; });
+          }, 250);
+        });
+      }
+      function escapeH(s) {
+        if (s == null) return '';
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+
       var addModal = document.getElementById('add-modal');
       var addOpen = document.getElementById('btn-add-part');
       var addForm = document.getElementById('add-form');
@@ -750,6 +822,13 @@ const STYLE = `
   .qty-msg { font-size: 0.85rem; margin-left: 0.25rem; }
   .qty-msg.ok { color: #68d391; }
   .qty-msg.err { color: #fc8181; }
+  .search-box { margin: 1.5rem 0 1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .search-box input { flex: 1; min-width: 200px; padding: 0.6rem 1rem; border: 1px solid #4a5568; border-radius: 8px; background: #2d3748; color: #e2e8f0; font-size: 1rem; outline: none; transition: border-color .15s; }
+  .search-box input:focus { border-color: #63b3ed; }
+  .search-box input::placeholder { color: #718096; }
+  .search-info { font-size: 0.9rem; color: #a0aec0; white-space: nowrap; }
+  .search-results { margin-bottom: 1.5rem; }
+  .search-results .name a:hover { text-decoration: underline !important; }
   .export-row { display: flex; align-items: center; gap: 0.75rem; margin: 1.5rem 0; flex-wrap: wrap; }
   .btn-add { background: #2b6cb0; }
   .btn-add:hover { background: #2c5282; }
