@@ -1,5 +1,18 @@
 [
   {
+    "rodzaj": "Audio",
+    "items": [
+      {
+        "xx": "76",
+        "name": "MAX98357A",
+        "quantity": "4",
+        "rodzaj": "Audio",
+        "description": "I2S DAC + Class D Amp; 3.2W; 2.5-5.5V; unfiltered; mono; supports I2S sampling up to 96kHz; direct speaker drive (4-8$\\Omega$); ideal for ESP32 audio.",
+        "image": "MAX98357A.jpg"
+      }
+    ]
+  },
+  {
     "rodzaj": "Czujnik",
     "items": [
       {
@@ -250,6 +263,27 @@
         "rodzaj": "Laser",
         "description": "Red laser module 650 nm; 5 mW; 3V or 5V supply; built-in driver; pointer/alignment",
         "image": "Laser Diode.png"
+      }
+    ]
+  },
+  {
+    "rodzaj": "Level shifter",
+    "items": [
+      {
+        "xx": "77",
+        "name": "Pixel Boost",
+        "quantity": "1",
+        "rodzaj": "Level shifter",
+        "description": "Unidirectional 3.3V to 5V; high-speed signal buffer for LEDs.",
+        "image": "pixel-boost.png"
+      },
+      {
+        "xx": "78",
+        "name": "MSX 4-ch",
+        "quantity": "1",
+        "rodzaj": "Level shifter",
+        "description": "Bi-directional 3.3V-5V; MOSFET-based; for I2C/UART/SPI.",
+        "image": "MSX-4ch.png"
       }
     ]
   },
@@ -701,6 +735,22 @@
         "rodzaj": "Zasilanie",
         "description": "USB step-down power module; 5V out; 1A typical; 6-24V DC in; compact",
         "image": "J5019.png"
+      },
+      {
+        "xx": "79",
+        "name": "XL4015",
+        "quantity": "1",
+        "rodzaj": "Zasilanie",
+        "description": "Step-Down High-power 5A Buck Converter; 1.25V-36V; high efficiency; ideal for LED strips and high-current projects.",
+        "image": "XL4015.png"
+      },
+      {
+        "xx": "80",
+        "name": "LM2596",
+        "quantity": "5",
+        "rodzaj": "Zasilanie",
+        "description": "DC-DC Buck Converter; 2A (3A peak); 1.23V-30V adj.; classic reliable regulator for general electronics.",
+        "image": "LM2596.png"
       }
     ]
   }
