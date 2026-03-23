@@ -9,6 +9,14 @@
         "rodzaj": "Audio",
         "description": "I2S DAC + Class D Amp; 3.2W; 2.5-5.5V; unfiltered; mono; supports I2S sampling up to 96kHz; direct speaker drive (4-8$\\Omega$); ideal for ESP32 audio.",
         "image": "MAX98357A.jpg"
+      },
+      {
+        "xx": "3",
+        "name": "INMP441",
+        "quantity": "3",
+        "rodzaj": "Audio",
+        "description": "Omnidirectional MEMS I2S digital microphone; 1.8-3.3V; 64 dB SNR; PDM output; bottom port",
+        "image": "INMP441.jpeg"
       }
     ]
   },
@@ -30,14 +38,6 @@
         "rodzaj": "Czujnik",
         "description": "6-axis IMU (3-axis gyro + 3-axis accelerometer); I2C/SPI; 2.4-3.6V; 16-bit; motion tracking",
         "image": "MPU-6500_GY-6500.jpg"
-      },
-      {
-        "xx": "3",
-        "name": "INMP441",
-        "quantity": "3",
-        "rodzaj": "Czujnik",
-        "description": "Omnidirectional MEMS I2S digital microphone; 1.8-3.3V; 64 dB SNR; PDM output; bottom port",
-        "image": "INMP441.jpeg"
       },
       {
         "xx": "13",
