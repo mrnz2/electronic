@@ -9,6 +9,14 @@
         "rodzaj": "Audio",
         "description": "I2S DAC + Class D Amp; 3.2W; 2.5-5.5V; unfiltered; mono; supports I2S sampling up to 96kHz; direct speaker drive (4-8$\\Omega$); ideal for ESP32 audio.",
         "image": "MAX98357A.jpg"
+      },
+      {
+        "xx": "82",
+        "name": "PCM5102 DAC",
+        "quantity": "5",
+        "rodzaj": "Audio",
+        "description": "High-end I2S Stereo DAC; 32-bit/384kHz; SNR 112dB; Line-level out (3.5mm Jack/Pins); No built-in amp; Ideal for high-fidelity ESP32/RPi audio",
+        "image": "PCM5102.jpg"
       }
     ]
   },
@@ -751,6 +759,14 @@
         "rodzaj": "Zasilanie",
         "description": "DC-DC Buck Converter; 2A (3A peak); 1.23V-30V adj.; classic reliable regulator for general electronics.",
         "image": "LM2596.png"
+      },
+      {
+        "xx": "81",
+        "name": "PD/QC Decoy Trigger",
+        "quantity": "4",
+        "rodzaj": "Zasilanie",
+        "description": "USB-C PD/QC/AFC Trigger; supports 5V/9V/12V/15V/20V fixed output; max 3A/5A; allows powering 12V/20V projects from USB-C fast chargers",
+        "image": "decoy-trigger.jpg"
       }
     ]
   }
