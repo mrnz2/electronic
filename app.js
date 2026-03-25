@@ -37,6 +37,21 @@ function removeEmptyCategories(data) {
   }
 }
 
+/** Ten sam CSV co przy eksporcie do ElectronicParts.csv (bez zapisu pliku). */
+function buildPartsCsvString() {
+  const data = loadPartsData();
+  const rows = data.flatMap((cat) =>
+    cat.items.map((p) => ({
+      XX: p.xx,
+      Name: p.name,
+      Quantity: p.quantity,
+      Rodzaj: p.rodzaj,
+      Description: p.description || '',
+    }))
+  );
+  return stringify(rows, { header: true, columns: CSV_HEADERS });
+}
+
 app.get('/', (req, res) => {
   const data = loadPartsData();
   const categories = data.map((c) => c.rodzaj);
@@ -224,23 +239,21 @@ app.get('/api/search', (req, res) => {
   res.json(results);
 });
 
+app.get('/api/csv-preview', (req, res) => {
+  try {
+    const csv = buildPartsCsvString();
+    res.json({ ok: true, csv });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
 app.post('/api/generate-csv', (req, res) => {
   try {
     if (fs.existsSync(CSV_PATH)) {
       fs.unlinkSync(CSV_PATH);
     }
-    const data = loadPartsData();
-    // Eksport tylko XX, Name, Quantity, Rodzaj, Description – pole image (zdjęcie) nie jest eksportowane.
-    const rows = data.flatMap((cat) =>
-      cat.items.map((p) => ({
-        XX: p.xx,
-        Name: p.name,
-        Quantity: p.quantity,
-        Rodzaj: p.rodzaj,
-        Description: p.description || '',
-      }))
-    );
-    const csv = stringify(rows, { header: true, columns: CSV_HEADERS });
+    const csv = buildPartsCsvString();
     fs.writeFileSync(CSV_PATH, csv, 'utf-8');
     res.json({ ok: true, path: 'ElectronicParts.csv' });
   } catch (e) {
@@ -288,11 +301,17 @@ function renderIndex(categories, parts) {
     <div class="export-row">
       <button type="button" id="btn-add-part" class="btn btn-add">Dodaj element</button>
       <button type="button" id="btn-generate-csv" class="btn btn-export">Generuj ElectronicParts.csv</button>
+      <button type="button" id="btn-show-csv" class="btn btn-show-csv" aria-expanded="false" aria-controls="csv-preview-wrap">Wyświetl wszystko</button>
+      <button type="button" id="btn-copy-csv" class="btn btn-copy-csv" title="Kopiuje listę części (CSV) do schowka">Kopiuj wszystko</button>
       <span id="csv-msg" class="export-msg"></span>
     </div>
     <footer>
       <a href="/">← Strona główna</a>
     </footer>
+    <div id="csv-preview-wrap" class="csv-preview-wrap" style="display:none">
+      <label for="csv-preview">Zawartość jak w ElectronicParts.csv (linia po linii — zaznacz i skopiuj)</label>
+      <textarea id="csv-preview" readonly rows="14" spellcheck="false" aria-label="Podgląd listy części jako CSV"></textarea>
+    </div>
   </div>
   <div id="add-modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop"></div>
@@ -329,12 +348,15 @@ function renderIndex(categories, parts) {
   </div>
   <script>
     (function(){
-      var btn = document.getElementById('btn-generate-csv');
+      var btnGen = document.getElementById('btn-generate-csv');
+      var btnShow = document.getElementById('btn-show-csv');
       var msg = document.getElementById('csv-msg');
-      if (btn) {
-        btn.addEventListener('click', function(){
+      var csvPreviewWrap = document.getElementById('csv-preview-wrap');
+      var csvPreview = document.getElementById('csv-preview');
+      if (btnGen) {
+        btnGen.addEventListener('click', function(){
           msg.textContent = '';
-          btn.disabled = true;
+          btnGen.disabled = true;
           fetch('/api/generate-csv', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
             .then(function(r){ return r.json(); })
             .then(function(data){
@@ -350,7 +372,85 @@ function renderIndex(categories, parts) {
               msg.textContent = 'Błąd połączenia';
               msg.className = 'export-msg err';
             })
-            .finally(function(){ btn.disabled = false; });
+            .finally(function(){ btnGen.disabled = false; });
+        });
+      }
+      if (btnShow) {
+        var csvPreviewVisible = false;
+        var labelShowCsv = 'Wyświetl wszystko';
+        var labelHideCsv = 'Ukryj';
+        btnShow.addEventListener('click', function(){
+          if (csvPreviewVisible) {
+            if (csvPreviewWrap) csvPreviewWrap.style.display = 'none';
+            btnShow.textContent = labelShowCsv;
+            btnShow.setAttribute('aria-expanded', 'false');
+            csvPreviewVisible = false;
+            msg.textContent = '';
+            msg.className = 'export-msg';
+            return;
+          }
+          msg.textContent = '';
+          btnShow.disabled = true;
+          fetch('/api/csv-preview')
+            .then(function(r){ return r.json(); })
+            .then(function(data){
+              if (data.ok && typeof data.csv === 'string') {
+                if (csvPreview) csvPreview.value = data.csv;
+                if (csvPreviewWrap) csvPreviewWrap.style.display = 'block';
+                btnShow.textContent = labelHideCsv;
+                btnShow.setAttribute('aria-expanded', 'true');
+                csvPreviewVisible = true;
+                msg.textContent = '';
+                msg.className = 'export-msg';
+              } else {
+                msg.textContent = (data && data.error) || 'Błąd';
+                msg.className = 'export-msg err';
+              }
+            })
+            .catch(function(){
+              msg.textContent = 'Błąd połączenia';
+              msg.className = 'export-msg err';
+            })
+            .finally(function(){ btnShow.disabled = false; });
+        });
+      }
+      var btnCopy = document.getElementById('btn-copy-csv');
+      function copyStringToClipboard(text) {
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+          return navigator.clipboard.writeText(text);
+        }
+        return new Promise(function(resolve, reject) {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            var ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (ok) resolve();
+            else reject(new Error('copy'));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+      if (btnCopy) {
+        btnCopy.addEventListener('click', function(){
+          btnCopy.disabled = true;
+          fetch('/api/csv-preview')
+            .then(function(r){ return r.json(); })
+            .then(function(data){
+              if (!data.ok || typeof data.csv !== 'string') return Promise.reject(new Error((data && data.error) || 'błąd'));
+              return copyStringToClipboard(data.csv);
+            })
+            .catch(function(err){ console.warn('Kopiuj wszystko:', err); })
+            .finally(function(){ btnCopy.disabled = false; });
         });
       }
       var searchInput = document.getElementById('search-input');
@@ -834,11 +934,19 @@ const STYLE = `
   .btn-add:hover { background: #2c5282; }
   .btn-export { background: #276749; }
   .btn-export:hover { background: #22543d; }
+  .btn-show-csv { background: #553c9a; }
+  .btn-show-csv:hover { background: #44337a; }
+  .btn-copy-csv { background: #2c5282; }
+  .btn-copy-csv:hover { background: #2a4365; }
   .form-err { font-size: 0.9rem; color: #fc8181; margin-bottom: 0.5rem; min-height: 1.25rem; }
   .form-group label .required { color: #fc8181; }
   .export-msg { font-size: 0.9rem; }
   .export-msg.ok { color: #68d391; }
   .export-msg.err { color: #fc8181; }
+  .csv-preview-wrap { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid #2d3748; }
+  .csv-preview-wrap label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #a0aec0; }
+  #csv-preview { width: 100%; min-height: 12rem; box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8rem; line-height: 1.4; padding: 0.75rem 1rem; border: 1px solid #4a5568; border-radius: 8px; background: #1a202c; color: #e2e8f0; resize: vertical; }
+  #csv-preview:focus { outline: none; border-color: #63b3ed; }
   .parts-table .actions { white-space: nowrap; }
   .btn-edit { padding: 0.4rem 0.8rem; font-size: 0.85rem; background: #4a5568; }
   .btn-edit:hover { background: #2b6cb0; }
