@@ -17,6 +17,14 @@
         "rodzaj": "Audio",
         "description": "High-end I2S Stereo DAC; 32-bit/384kHz; SNR 112dB; Line-level out (3.5mm Jack/Pins); No built-in amp; Ideal for high-fidelity ESP32/RPi audio",
         "image": "PCM5102.jpg"
+      },
+      {
+        "xx": "3",
+        "name": "INMP441",
+        "quantity": "3",
+        "rodzaj": "Audio",
+        "description": "Omnidirectional MEMS I2S digital microphone; 1.8-3.3V; 64 dB SNR; PDM output; bottom port",
+        "image": "INMP441.jpeg"
       }
     ]
   },
@@ -38,14 +46,6 @@
         "rodzaj": "Czujnik",
         "description": "6-axis IMU (3-axis gyro + 3-axis accelerometer); I2C/SPI; 2.4-3.6V; 16-bit; motion tracking",
         "image": "MPU-6500_GY-6500.jpg"
-      },
-      {
-        "xx": "3",
-        "name": "INMP441",
-        "quantity": "3",
-        "rodzaj": "Czujnik",
-        "description": "Omnidirectional MEMS I2S digital microphone; 1.8-3.3V; 64 dB SNR; PDM output; bottom port",
-        "image": "INMP441.jpeg"
       },
       {
         "xx": "13",
