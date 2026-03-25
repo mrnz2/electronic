@@ -287,10 +287,10 @@ function renderIndex(categories, parts) {
       <section id="ha-context-section" class="ha-context-section" style="display:none" aria-hidden="true">
         <h3>Kontekst Systemowy (Home Assistant):</h3>
         <ul>
-          <li><strong>Serwer:</strong> Raspberry Pi 5 + Dysk SSD (HAOS)</li>
-          <li><strong>Oświetlenie:</strong> Żarówki Zigbee + Customowe lampy DIY (WLED) + matryca LED 8x8 (WLED)</li>
-          <li><strong>Multimedia:</strong> WiiM Mini sterowany przez TagTuner (NFC) ktory czyta karty NFC i odtwarza odpowiednie media</li>
-          <li><strong>Druk 3D:</strong> Ender 3 V3 SE + Raspberry Pi 4 (OctoPrint) zintegrowany z HA</li>
+          <li><strong>Serwer:</strong> Raspberry Pi 5 8GB + Dysk SSD 480 GB M.2 NVMe(HAOS) w Argon NEO 5 M.2 NVMe PCIe</li>
+          <li><strong>Oświetlenie:</strong> Żarówki Zigbee + Customowe lampy DIY (WLED + ESP32) + matryca LED 8x8 (WLED + ESP32)</li>
+          <li><strong>Multimedia:</strong> WiiM Mini sterowany przez TagTuner (NFC card reader) ktory czyta karty NFC i odtwarza odpowiednie media</li>
+          <li><strong>Druk 3D:</strong> Ender 3 V3 SE + Raspberry Pi 4 4GB (OctoPrint) zintegrowany z HA</li>
           <li><strong>Sterowanie:</strong> Włączniki Zigbee oraz Pilot Zigbee (TV & AC)</li>
         </ul>
       </section>
