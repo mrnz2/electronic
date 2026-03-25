@@ -283,6 +283,19 @@ function renderIndex(categories, parts) {
       <h1>Kategorie części elektronicznych</h1>
       <p>Wybierz kategorię, aby zobaczyć listę elementów.</p>
     </header>
+    <div class="ha-context-wrap">
+      <section id="ha-context-section" class="ha-context-section" style="display:none" aria-hidden="true">
+        <h3>Kontekst Systemowy (Home Assistant):</h3>
+        <ul>
+          <li><strong>Serwer:</strong> Raspberry Pi 5 + Dysk SSD (HAOS)</li>
+          <li><strong>Oświetlenie:</strong> Żarówki Zigbee + Customowe lampy DIY (WLED) + matryca LED 8x8 (WLED)</li>
+          <li><strong>Multimedia:</strong> WiiM Mini sterowany przez TagTuner (NFC) ktory czyta karty NFC i odtwarza odpowiednie media</li>
+          <li><strong>Druk 3D:</strong> Ender 3 V3 SE + Raspberry Pi 4 (OctoPrint) zintegrowany z HA</li>
+          <li><strong>Sterowanie:</strong> Włączniki Zigbee oraz Pilot Zigbee (TV & AC)</li>
+        </ul>
+      </section>
+      <button type="button" id="btn-toggle-ha-context" class="btn btn-ha-context-toggle" aria-expanded="false" aria-controls="ha-context-section">Pokaż kontekst (Home Assistant)</button>
+    </div>
     <div class="search-box">
       <input type="text" id="search-input" placeholder="Szukaj elementu po nazwie…" autocomplete="off">
       <span id="search-info" class="search-info"></span>
@@ -348,6 +361,26 @@ function renderIndex(categories, parts) {
   </div>
   <script>
     (function(){
+      var haSection = document.getElementById('ha-context-section');
+      var btnHaToggle = document.getElementById('btn-toggle-ha-context');
+      if (btnHaToggle && haSection) {
+        var haLabelShow = 'Pokaż kontekst (Home Assistant)';
+        var haLabelHide = 'Ukryj kontekst (Home Assistant)';
+        btnHaToggle.addEventListener('click', function(){
+          var open = haSection.style.display !== 'none';
+          if (open) {
+            haSection.style.display = 'none';
+            haSection.setAttribute('aria-hidden', 'true');
+            btnHaToggle.textContent = haLabelShow;
+            btnHaToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            haSection.style.display = 'block';
+            haSection.setAttribute('aria-hidden', 'false');
+            btnHaToggle.textContent = haLabelHide;
+            btnHaToggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
       var btnGen = document.getElementById('btn-generate-csv');
       var btnShow = document.getElementById('btn-show-csv');
       var msg = document.getElementById('csv-msg');
@@ -897,6 +930,12 @@ const STYLE = `
   header { margin-bottom: 2rem; }
   header h1 { font-size: 1.75rem; margin: 0 0 0.5rem; color: #f7fafc; }
   header p { margin: 0; color: #a0aec0; }
+  .ha-context-wrap { margin: 1rem 0 1.5rem; }
+  .ha-context-section h3 { font-size: 1.1rem; margin: 0 0 0.75rem; color: #90cdf4; }
+  .ha-context-section ul { margin: 0; padding-left: 1.25rem; color: #cbd5e0; font-size: 0.95rem; line-height: 1.5; }
+  .ha-context-section li { margin-bottom: 0.35rem; }
+  .btn-ha-context-toggle { background: #4a5568; margin-top: 0.75rem; }
+  .ha-context-section[aria-hidden="true"] + .btn-ha-context-toggle { margin-top: 0; }
   .categories { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
   .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: #4a5568; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background .15s; }
   .btn:hover { background: #2b6cb0; }
