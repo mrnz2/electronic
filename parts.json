@@ -151,7 +151,7 @@
       {
         "xx": "54",
         "name": "FR107 diode",
-        "quantity": "10",
+        "quantity": "11",
         "rodzaj": "Dioda",
         "description": "Fast recovery; 1000V 1A; 500 ns trr; for switching supplies",
         "image": "FR107_diode.jpg"
